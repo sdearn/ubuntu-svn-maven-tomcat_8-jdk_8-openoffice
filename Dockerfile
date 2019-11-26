@@ -22,13 +22,7 @@ ADD file/ work/
 
 WORKDIR /work
 
-RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm
-
-RUN ["chmod", "+x", "/work/jdk-8u131-linux-x64.rpm"]
-
-RUN rpm -ivh jdk-8u131-linux-x64.rpm
-
-RUN echo "export JAVA_HOME=/usr/java/jdk1.8.0_131">>/etc/profile
+RUN echo "export JAVA_HOME=/work/jdk1.8.0_231">>/etc/profile
 RUN echo "export JRE_HOME=$JAVA_HOME/jre">>/etc/profile
 RUN echo "export CLASSPATH=$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH">>/etc/profile
 RUN echo "export JAVA_PATH=${JAVA_HOME}/bin:${JRE_HOME}/bin">>/etc/profile
@@ -36,7 +30,7 @@ RUN echo "export PATH=$PATH:${JAVA_PATH}">>/etc/profile
 
 RUN mkdir -p /root/.m2/ && mv settings.xml /root/.m2/
     
-#RUN mv java.security /usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/security/
+#RUN mv java.security /work/jdk1.8.0_231/jre/lib/security/
 
 RUN ["chmod", "+x", "/work/docker-entrypoint.sh"]
 
