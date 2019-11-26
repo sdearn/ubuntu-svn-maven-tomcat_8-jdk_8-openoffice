@@ -30,7 +30,7 @@ WORKDIR /work
 
 RUN mkdir -p /root/.m2/ && mv settings.xml /root/.m2/
     
-RUN mv java.security /usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/security/
+#RUN mv java.security /usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/security/
 
 RUN ["chmod", "+x", "/work/docker-entrypoint.sh"]
 
