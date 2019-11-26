@@ -6,8 +6,8 @@ RUN sudo rm -f /etc/localtime \
     && sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 RUN sudo apt-get update \
-    && sudo apt-get install -y openjdk-8-jdk \
-    && sudo apt-get install -y openjdk-8-jre \
+    && sudo apt-get install -y java-1.8.0-openjdk \
+    && sudo apt-get install -y java-1.8.0-openjre \
     && sudo apt-get install -y wget \
     && sudo apt-get install -y zip \
     && sudo apt-get install -y vim \
