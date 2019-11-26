@@ -6,17 +6,11 @@ RUN sudo rm -f /etc/localtime \
     && sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 RUN sudo apt-get update \
-    && sudo apt-get install -y java-1.8.0-openjdk \
-    && sudo apt-get install -y java-1.8.0-openjre \
     && sudo apt-get install -y wget \
     && sudo apt-get install -y zip \
     && sudo apt-get install -y vim \
     && sudo apt-get install -y xvfb
- 
-RUN echo "export JAVA_HOME=/usr/lib/jvm/Java-8-openjdk-amd64">>/etc/profile
-RUN echo "export JRE_HOME=$JAVA_HOME/jre">>/etc/profile
-RUN echo "export CLASSPATH=$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH">>/etc/profile
-RUN echo "export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH">>/etc/profile
+
 
 RUN sudo apt-get install -y subversion
 
@@ -27,6 +21,12 @@ ADD file/ work/
 #ADD file/java.security work/java.security
 
 WORKDIR /work
+
+RUN echo "export JAVA_HOME=/work/jdk1.8.0_231">>/etc/profile
+RUN echo "export JRE_HOME=$JAVA_HOME/jre">>/etc/profile
+RUN echo "export CLASSPATH=$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH">>/etc/profile
+RUN echo "export JAVA_PATH=${JAVA_HOME}/bin:${JRE_HOME}/bin">>/etc/profile
+RUN echo "export PATH=$PATH:${JAVA_PATH}">>/etc/profile
 
 RUN mkdir -p /root/.m2/ && mv settings.xml /root/.m2/
     
