@@ -10,8 +10,6 @@ RUN sudo apt-get install -y wget
 RUN sudo apt-get install -y zip
 RUN sudo apt-get install -y vim
 RUN sudo apt-get install -y xvfb
-
-
 RUN sudo apt-get install -y subversion
 
 ADD file/ work/
